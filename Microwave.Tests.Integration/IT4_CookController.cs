@@ -37,5 +37,7 @@ namespace Microwave.Tests.Integration
         {
             Assert.That(()=>_sut.StartCooking(50,60),Throws.Nothing);
         }
+
+        
     }
 }
