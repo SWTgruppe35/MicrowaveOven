@@ -38,9 +38,22 @@ namespace Microwave.Tests.Integration
             int time = 20000;
             _sut.StartCooking(50,time);
             System.Threading.Thread.Sleep(1010);
-            Assert.That(_timer.TimeRemaining<time));
+
+            Assert.That(_timer.TimeRemaining<time);
         }
 
+        [Test]
+        public void StopCookingTimerStop()
+        {
+            int time = 20000;
+            _sut.StartCooking(50,1000);
+            System.Threading.Thread.Sleep(1010);
+            _sut.Stop();
+            int time1 = _timer.TimeRemaining;
+            System.Threading.Thread.Sleep(1010);
+            int time2 = _timer.TimeRemaining;
 
+            Assert.That(time1==time2);
+        }
     }
 }
