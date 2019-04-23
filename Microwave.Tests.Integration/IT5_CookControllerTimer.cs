@@ -32,5 +32,15 @@ namespace Microwave.Tests.Integration
             _sut = new CookController(_timer, _display, _powerTube, _userInterfaceSub);
         }
 
+        [Test]
+        public void StartCookingTimerStart()
+        {
+            int time = 20000;
+            _sut.StartCooking(50,time);
+            System.Threading.Thread.Sleep(1010);
+            Assert.That(_timer.TimeRemaining<time));
+        }
+
+
     }
 }
