@@ -61,6 +61,7 @@
     <Compile Include="IT4_CookController.cs" />
     <Compile Include="IT2_Light.cs" />
     <Compile Include="IT3_PowerTube.cs" />
+    <Compile Include="IT5_CookControllerTimer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
