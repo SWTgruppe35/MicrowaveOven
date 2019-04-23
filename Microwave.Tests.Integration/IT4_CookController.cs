@@ -67,5 +67,9 @@ namespace Microwave.Tests.Integration
 
             _timerSub.Received(1).Stop();
         }
+        public void StartCookingPowerTubeThrownNothing()
+        {
+            Assert.That(()=>_sut.StartCooking(50,60),Throws.Nothing);
+        }
     }
 }
