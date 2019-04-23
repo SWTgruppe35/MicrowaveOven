@@ -31,7 +31,11 @@ namespace Microwave.Tests.Integration
             _powerTube = new PowerTube(_outputSub);
             _sut = new CookController(_timerSub, _display, _powerTube, _userInterfaceSub);
         }
-        [Test]
 
+        [Test]
+        public void StartCookingPowerTubeThrownNothing()
+        {
+            Assert.That(()=>_sut.StartCooking(50,60),Throws.Nothing);
+        }
     }
 }
