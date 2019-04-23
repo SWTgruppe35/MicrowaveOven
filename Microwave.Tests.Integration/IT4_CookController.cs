@@ -47,7 +47,7 @@ namespace Microwave.Tests.Integration
             _sut.StartCooking(50, 2000);
             _sut.Stop();
 
-            _outputSub.Received().OutputLine($"PowerTube works with {200} %");
+            _outputSub.Received().OutputLine($"PowerTube works with {50} %");
         }
 
         [Test]
