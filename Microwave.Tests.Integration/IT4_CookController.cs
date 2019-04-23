@@ -31,7 +31,41 @@ namespace Microwave.Tests.Integration
             _powerTube = new PowerTube(_outputSub);
             _sut = new CookController(_timerSub, _display, _powerTube, _userInterfaceSub);
         }
-        [Test]
 
+        [Test]
+        public void PowerTubeStopped()
+        {
+            _sut.StartCooking(50,2000);
+            _sut.Stop();
+
+            _outputSub.Received().OutputLine($"PowerTube turned off");
+        }
+
+        [Test]
+        public void PowerTubeStarted()
+        {
+            _sut.StartCooking(50, 2000);
+            _sut.Stop();
+
+            _outputSub.Received().OutputLine($"PowerTube works with {200} %");
+        }
+
+        [Test]
+        public void TimerStarted()
+        {
+            _sut.StartCooking(50, 2000);
+            _sut.Stop();
+
+            _timerSub.Received(1).Start(2000);
+        }
+
+        [Test]
+        public void TimerStopped()
+        {
+            _sut.StartCooking(50, 2000);
+            _sut.Stop();
+
+            _timerSub.Received(1).Stop();
+        }
     }
 }
