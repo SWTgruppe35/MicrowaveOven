@@ -14,38 +14,38 @@ namespace Microwave.Tests.Integration
     [TestFixture]
     public class IT1_Display
     {
-        private IOutput outputSub;
-        private IDisplay display;
+        private IOutput _outputSub;
+        private IDisplay _sut;
 
         [SetUp]
         public void SetUp()
         {
-            outputSub = Substitute.For<IOutput>();
-            display = new Display(outputSub);
+            _outputSub = Substitute.For<IOutput>();
+            _sut = new Display(_outputSub);
         }
 
         [Test]
         public void ShowTimeIsCalledWithParameters()
         {
-            display.ShowTime(10,10);
+            _sut.ShowTime(10,10);
 
-            outputSub.Received(1).OutputLine($"Display shows: {10:D2}:{10:D2}");
+            _outputSub.Received(1).OutputLine($"Display shows: {10:D2}:{10:D2}");
         }
 
         [Test]
         public void ShowPowerIsCalledWithParameters()
         {
-            display.ShowPower(10);
+            _sut.ShowPower(10);
 
-            outputSub.Received(1).OutputLine($"Display shows: {10} W");
+            _outputSub.Received(1).OutputLine($"Display shows: {10} W");
         }
 
         [Test]
         public void ClearIsCalled()
         {
-            display.Clear();
+            _sut.Clear();
 
-            outputSub.Received(1).OutputLine("Display cleared");
+            _outputSub.Received(1).OutputLine("Display cleared");
         }
     }
 }
