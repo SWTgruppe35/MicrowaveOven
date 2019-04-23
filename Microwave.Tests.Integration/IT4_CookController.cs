@@ -67,9 +67,41 @@ namespace Microwave.Tests.Integration
 
             _timerSub.Received(1).Stop();
         }
-        public void StartCookingPowerTubeThrownNothing()
+
+        [Test]
+        public void StartCooking_PowerTube_ThrownNothing()
         {
             Assert.That(()=>_sut.StartCooking(50,60),Throws.Nothing);
         }
+
+        [Test]
+        public void Powertube_Stopped_After_TimerExpireEvent()
+        {
+            _sut.StartCooking(50,2000);
+            _timerSub.Expired += Raise.Event();
+
+            _outputSub.Received(1).OutputLine($"PowerTube turned off");
+
+        }
+
+        [Test]
+        public void Powertube_NotStopped_After_TimerExpireEvent()
+        {
+            _timerSub.Expired += Raise.Event();
+
+            _outputSub.DidNotReceiveWithAnyArgs().OutputLine("");
+        }
+
+        [Test]
+        public void Outputs_TimeRemaining_After_TimerTickEvent()
+        {
+            _sut.StartCooking(50,2000);
+
+            _timerSub.TimeRemaining.Returns(2000);
+            _timerSub.TimerTick += Raise.Event();
+
+            _outputSub.Received().OutputLine($"Display shows: {0:D2}:{2:D2}");
+        }
+
     }
 }
