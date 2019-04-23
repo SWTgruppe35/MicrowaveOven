@@ -7,6 +7,7 @@ using MicrowaveOvenClasses.Boundary;
 using NUnit.Framework;
 using MicrowaveOvenClasses.Interfaces;
 using NSubstitute;
+using NSubstitute.Core.Arguments;
 using NSubstitute.ReceivedExtensions;
 
 namespace Microwave.Tests.Integration
@@ -24,7 +25,24 @@ namespace Microwave.Tests.Integration
             _sut = new Light(_outputSub);
         }
 
-        []
-      
+        [Test]
+        public void TurnOnIsCalledOnce()
+        {
+            _sut.TurnOn();
+            _sut.TurnOn();
+
+            _outputSub.ReceivedWithAnyArgs(1).OutputLine("");
+        }
+
+        public void TurnOffIsCalledOnce()
+        {
+            _sut.TurnOn();
+            _sut.TurnOff();
+            _sut.TurnOff();
+
+            _outputSub.ReceivedWithAnyArgs(2).OutputLine("");
+        }
+
+
     }
 }
