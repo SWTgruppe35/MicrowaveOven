@@ -33,6 +33,40 @@ namespace Microwave.Tests.Integration
         }
 
         [Test]
+        public void PowerTubeStopped()
+        {
+            _sut.StartCooking(50,2000);
+            _sut.Stop();
+
+            _outputSub.Received().OutputLine($"PowerTube turned off");
+        }
+
+        [Test]
+        public void PowerTubeStarted()
+        {
+            _sut.StartCooking(50, 2000);
+            _sut.Stop();
+
+            _outputSub.Received().OutputLine($"PowerTube works with {50} %");
+        }
+
+        [Test]
+        public void TimerStarted()
+        {
+            _sut.StartCooking(50, 2000);
+            _sut.Stop();
+
+            _timerSub.Received(1).Start(2000);
+        }
+
+        [Test]
+        public void TimerStopped()
+        {
+            _sut.StartCooking(50, 2000);
+            _sut.Stop();
+
+            _timerSub.Received(1).Stop();
+        }
         public void StartCookingPowerTubeThrownNothing()
         {
             Assert.That(()=>_sut.StartCooking(50,60),Throws.Nothing);
