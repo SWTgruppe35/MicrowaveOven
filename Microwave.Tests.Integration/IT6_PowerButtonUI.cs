@@ -43,7 +43,6 @@ namespace Microwave.Tests.Integration
         public void PowerButtonPressed()
         {
             _powerButton.Press();
-
             _outputSub.Received().OutputLine($"Display shows: {50} W");
         }
 
@@ -51,8 +50,34 @@ namespace Microwave.Tests.Integration
         public void PowerButtonPressedIncreasePower()
         {
             _powerButton.Press();
+            _powerButton.Press();
 
             _outputSub.Received().OutputLine($"Display shows: {100} W");
+        }
+
+        [Test]
+        public void PowerButtonPressedFifteenTimes()
+        {
+            for (int i = 0; i < 15; i++)
+            {
+                _powerButton.Press();
+            }
+
+            _outputSub.Received(2).OutputLine($"Display shows: {50} W");
+        }
+
+        [Test]
+        public void PowerButtonPressedTwoTimesAndDoorIsOpenedAndClosed()
+        {
+            _powerButton.Press();
+            _powerButton.Press();
+
+            _doorSub.Opened += Raise.Event();
+            _doorSub.Closed += Raise.Event();
+
+            _powerButton.Press();
+
+            _outputSub.Received(2).OutputLine($"Display shows: {50} W");
         }
     }
 }
