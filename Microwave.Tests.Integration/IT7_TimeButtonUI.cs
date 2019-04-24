@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MicrowaveOvenClasses.Boundary;
+using MicrowaveOvenClasses.Controllers;
 using MicrowaveOvenClasses.Interfaces;
+using NSubstitute;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
 
@@ -25,7 +28,17 @@ namespace Microwave.Tests.Integration
         [SetUp]
         public void Setup()
         {
-            
+            _powerbtn=new Button();
+            _timerbtn = new Button();
+            _outputSub = Substitute.For<IOutput>();
+            _display=new Display(_outputSub);
+            _start_cancelbtnSub = Substitute.For<IButton>();
+            _light=new Light(_outputSub);
+            _doorSub = Substitute.For<IDoor>();
+            _controllerSub = Substitute.For<ICookController>();
+            _sut=new UserInterface(_powerbtn,_timerbtn,_start_cancelbtnSub,_doorSub, _display, _light, _controllerSub);
+
+            _powerbtn.Press();
         }
     }
 }
