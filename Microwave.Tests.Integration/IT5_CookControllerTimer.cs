@@ -69,6 +69,17 @@ namespace Microwave.Tests.Integration
         }
 
         [Test]
-        public void
+        public void TimerExpiredEvent()
+        {
+            _sut.StartCooking(50, 2000);
+            System.Threading.Thread.Sleep(2010);
+
+            _sut.Stop();
+
+            _outputSub.Received().OutputLine($"Display shows: {0:D2}:{0:D2}");
+            _outputSub.Received().OutputLine($"PowerTube turned off");
+
+        }
+
     }
 }
