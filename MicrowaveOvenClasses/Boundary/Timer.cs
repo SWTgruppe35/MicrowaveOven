@@ -22,9 +22,9 @@ namespace MicrowaveOvenClasses.Boundary
         }
 
 
-        public void Start(int time)
+        public void Start(int sec)
         {
-            TimeRemaining = time;
+            TimeRemaining = sec*1000;
             timer.Enabled = true;
         }
 
