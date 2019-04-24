@@ -7,6 +7,7 @@ using MicrowaveOvenClasses.Boundary;
 using MicrowaveOvenClasses.Controllers;
 using MicrowaveOvenClasses.Interfaces;
 using NSubstitute;
+using NSubstitute.Core.Arguments;
 using NUnit.Framework;
 
 namespace Microwave.Tests.Integration
@@ -33,11 +34,20 @@ namespace Microwave.Tests.Integration
         }
 
         [Test]
+        public void TimerTickEvent()
+        {
+            _sut.StartCooking(50, 10);
+            System.Threading.Thread.Sleep(1500);
+
+            _outputSub.Received().OutputLine($"Display shows: {0:D2}:{9:D2}");
+        }
+
+        [Test]
         public void StartCookingTimerStart()
         {
-            int time = 20000;
-            _sut.StartCooking(50,time);
-            System.Threading.Thread.Sleep(1010);
+            int time = 20;
+            _sut.StartCooking(50,20);
+            System.Threading.Thread.Sleep(2000);
 
             Assert.That(_timer.TimeRemaining<time);
         }
@@ -45,8 +55,8 @@ namespace Microwave.Tests.Integration
         [Test]
         public void StopCookingTimerStop()
         {
-            int time = 20000;
-            _sut.StartCooking(50,1000);
+            int time = 20;
+            _sut.StartCooking(50,1);
             System.Threading.Thread.Sleep(1010);
             _sut.Stop();
             int time1 = _timer.TimeRemaining;
@@ -55,5 +65,17 @@ namespace Microwave.Tests.Integration
 
             Assert.That(time1==time2);
         }
+
+        [Test]
+        public void TimerExpiredEvent()
+        {
+            _sut.StartCooking(50, 2);
+            System.Threading.Thread.Sleep(2600);
+
+            _outputSub.Received().OutputLine($"PowerTube turned off");
+
+        }
+
+
     }
 }

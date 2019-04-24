@@ -95,9 +95,9 @@ namespace Microwave.Tests.Integration
         [Test]
         public void Outputs_TimeRemaining_After_TimerTickEvent()
         {
-            _sut.StartCooking(50,2000);
+            _sut.StartCooking(50,2);
 
-            _timerSub.TimeRemaining.Returns(2000);
+            _timerSub.TimeRemaining.Returns(2);
             _timerSub.TimerTick += Raise.Event();
 
             _outputSub.Received().OutputLine($"Display shows: {0:D2}:{2:D2}");
