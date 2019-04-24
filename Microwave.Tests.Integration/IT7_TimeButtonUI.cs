@@ -40,5 +40,27 @@ namespace Microwave.Tests.Integration
 
             _powerbtn.Press();
         }
+
+        [Test]
+        public void TimeBtnPressedDisplayShowsRightTime()
+        {
+            _timerbtn.Press();
+
+            _outputSub.Received().OutputLine($"Display shows: {1:D2}:{0:D2}");
+
+        }
+
+        [Test]
+        public void TimeBtnPressed5TimesDisplayShowsRightTime()
+        {
+            _timerbtn.Press();
+            _timerbtn.Press();
+            _timerbtn.Press();
+            _timerbtn.Press();
+            _timerbtn.Press();
+
+            _outputSub.Received().OutputLine($"Display shows: {5:D2}:{0:D2}");
+
+        }
     }
 }
