@@ -62,5 +62,20 @@ namespace Microwave.Tests.Integration
             _outputSub.Received().OutputLine($"Display shows: {5:D2}:{0:D2}");
 
         }
+
+        [Test]
+        public void DoorOpenedTimeResetDisplayShowsClearedLightTurnsOn()
+        {
+            _timerbtn.Press();
+            _timerbtn.Press();
+            _timerbtn.Press();
+            _timerbtn.Press();
+            _timerbtn.Press();
+
+            _doorSub.Opened += Raise.Event();
+
+            _outputSub.Received().OutputLine($"Light is turned on");
+            _outputSub.Received().OutputLine($"Display cleared");
+        }
     }
 }
