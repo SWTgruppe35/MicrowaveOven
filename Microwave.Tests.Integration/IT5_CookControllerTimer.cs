@@ -78,7 +78,6 @@ namespace Microwave.Tests.Integration
 
             _outputSub.Received().OutputLine($"Display shows: {0:D2}:{0:D2}");
             _outputSub.Received().OutputLine($"PowerTube turned off");
-
         }
 
     }
