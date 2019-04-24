@@ -7,6 +7,7 @@ using MicrowaveOvenClasses.Boundary;
 using MicrowaveOvenClasses.Controllers;
 using MicrowaveOvenClasses.Interfaces;
 using NSubstitute;
+using NSubstitute.Core.Arguments;
 using NUnit.Framework;
 
 namespace Microwave.Tests.Integration
@@ -55,5 +56,19 @@ namespace Microwave.Tests.Integration
 
             Assert.That(time1==time2);
         }
+
+        [Test]
+        public void TimerTickEvent()
+        {
+            _sut.StartCooking(50, 10000);
+            System.Threading.Thread.Sleep(1010);
+
+            _sut.Stop();
+
+            _outputSub.Received().OutputLine($"Display shows: {0:D2}:{9:D2}");
+        }
+
+        [Test]
+        public void
     }
 }
