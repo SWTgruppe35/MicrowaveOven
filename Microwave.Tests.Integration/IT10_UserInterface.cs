@@ -52,9 +52,21 @@ namespace Microwave.Tests.Integration
             _powerButton.Press();
             _timeButton.Press();
             _startCancelButton.Press();
-            System.Threading.Thread.Sleep(5000);
 
             _outputSub.Received().OutputLine($"PowerTube works with 50 W");
         }
+
+        [Test]
+        public void StartCookingAssertTimerStarted()
+        {
+            _powerButton.Press();
+            _timeButton.Press();
+            _startCancelButton.Press();
+            System.Threading.Thread.Sleep(5010);
+
+            _outputSub.Received(5).OutputLine(Arg.Is<string>(str => str.Contains($"Display shows: 00:")));
+        }
+
+
     }
 }
