@@ -79,5 +79,18 @@ namespace Microwave.Tests.Integration
             _outputSub.Received().OutputLine($"Display cleared");
 
         }
+
+        [Test]
+        public void CookingDoorOpened()
+        {
+            _powerbtn.Press();
+            _timerbtn.Press();
+            _start_cancelbtn.Press();
+
+            _door.Open();
+
+            _outputSub.Received().OutputLine($"Light is turned on");
+            _outputSub.Received().OutputLine($"Display cleared");
+        }
     }
 }
