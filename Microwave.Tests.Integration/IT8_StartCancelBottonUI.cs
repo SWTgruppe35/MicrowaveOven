@@ -8,6 +8,7 @@ using MicrowaveOvenClasses.Controllers;
 using MicrowaveOvenClasses.Interfaces;
 using NSubstitute;
 using NUnit.Framework;
+using NUnit.Framework.Constraints;
 using NUnit.Framework.Internal;
 
 namespace Microwave.Tests.Integration
@@ -34,7 +35,7 @@ namespace Microwave.Tests.Integration
             _doorSub = Substitute.For<IDoor>();
             _powerButton = new Button();
             _timeButtonSub = Substitute.For<IButton>();
-            _startCancelButtonSub = Substitute.For<IButton>();
+            _startCancelButtonSub = new Button();
             _cookControllerSub = Substitute.For<ICookController>();
             _sut = new UserInterface(_powerButton, _timeButtonSub, _startCancelButtonSub, _doorSub, _display, _light, _cookControllerSub);
             _startCancelButtonSub.Press();
@@ -50,10 +51,11 @@ namespace Microwave.Tests.Integration
 
 
 
+        [Test]
+        public void StartCancel_btn_SetTimeState()
+        {
 
-
-
-
+        } 
 
     }
 }
