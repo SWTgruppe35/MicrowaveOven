@@ -8,23 +8,23 @@ using MicrowaveOvenClasses.Controllers;
 using MicrowaveOvenClasses.Interfaces;
 using NSubstitute;
 using NUnit.Framework;
-using NUnit.Framework.Constraints;
-using NUnit.Framework.Internal;
 
 namespace Microwave.Tests.Integration
 {
     [TestFixture]
-    class IT8_UserInterfaceDoor
+    public class IT10_Userinterface
     {
         private IUserInterface _sut;
         private IOutput _outputSub;
-        private IDoor _doorSub;
+        private IDoor _door;
         private IButton _powerButton;
-        private IButton _timeButtonSub;
-        private IButton _startCancelButtonSub;
+        private IButton _timeButton;
+        private IButton _startCancelButton;
         private IDisplay _display;
         private ILight _light;
-        private ICookController _cookControllerSub;
+        private IPowerTube _powerTube;
+        private ITimer _timer;
+        private ICookController _cookController;
 
         [SetUp]
         public void Setup()
@@ -32,37 +32,23 @@ namespace Microwave.Tests.Integration
             _outputSub = Substitute.For<IOutput>();
             _light = new Light(_outputSub);
             _display = new Display(_outputSub);
-            _doorSub = Substitute.For<IDoor>();
+            _door = new Door();
             _powerButton = new Button();
-            _timeButtonSub = Substitute.For<IButton>();
-            _startCancelButtonSub = new Button();
-            _cookControllerSub = Substitute.For<ICookController>();
-            _sut = new UserInterface(_powerButton, _timeButtonSub, _startCancelButtonSub, _doorSub, _display, _light, _cookControllerSub);
-            
+            _timeButton = new Button();
+            _startCancelButton = new Button();
+            _timer = new Timer();
+            _powerTube = new PowerTube(_outputSub);
+            _cookController = new CookController(_timer, _display, _powerTube, _sut);
+
+            _sut = new UserInterface(_powerButton, _timeButton, _startCancelButton, _door, _display, _light,
+                _cookController);
         }
 
         [Test]
-        public void StartCancelBottonSetPowerState()
+        public void PowerButtonPressed()
         {
             _powerButton.Press();
-            _startCancelButtonSub.Press();
             _outputSub.Received().OutputLine($"Display shows: {50} W");
         }
-
-
-
-        [Test]
-        public void StartCancel_btn_SetTimeState()
-        {
-
-        }
-
-        [Test]
-        public void StartCancelBottonSetCooking()
-        {
-
-        }
-
-
     }
 }
