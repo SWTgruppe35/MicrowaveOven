@@ -34,9 +34,9 @@ namespace Microwave.Tests.Integration
         [Test]
         public void TurnOnAndOffPowerTubeIsCalled()
         {
-            _sut.TurnOn(10);
+            _sut.TurnOn(50);
             _sut.TurnOff();
-            _outputSub.Received(1).OutputLine($"PowerTube works with {10} %");
+            _outputSub.Received(1).OutputLine($"PowerTube works with {50} W");
             _outputSub.Received(1).OutputLine($"PowerTube turned off");
         }
 
