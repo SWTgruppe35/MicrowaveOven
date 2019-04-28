@@ -44,7 +44,8 @@ namespace Microwave.Tests.Integration
         [Test]
         public void StartCancelBottonSetPower()
         {
-            _startCancelButtonSub
+            _startCancelButtonSub.Press();
+            _outputSub.Received().OutputLine($"Display shows: {50} W");
         }
 
 
