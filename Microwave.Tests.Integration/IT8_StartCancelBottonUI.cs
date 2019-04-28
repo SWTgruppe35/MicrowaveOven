@@ -41,5 +41,18 @@ namespace Microwave.Tests.Integration
 
         }
 
+        [Test]
+        public void StartCancelBottonSetPower()
+        {
+            _startCancelButtonSub
+        }
+
+
+
+
+
+
+
+
     }
 }
