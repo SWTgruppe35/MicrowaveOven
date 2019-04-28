@@ -65,7 +65,7 @@
     <Compile Include="IT5_CookControllerTimer.cs" />
     <Compile Include="IT7_TimeButtonUI.cs" />
     <Compile Include="IT6_PowerButtonUI.cs" />
-    <Compile Include="IT8_StartCancelBottonUI.cs" />
+    <Compile Include="IT8_StartCancelButtonUI.cs" />
     <Compile Include="IT9_DoorUI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
