@@ -39,7 +39,6 @@ namespace Microwave.Tests.Integration
             _cookControllerSub = Substitute.For<ICookController>();
             _sut = new UserInterface(_powerButton, _timeButton, _startCancelButton, _doorSub, _display, _light, _cookControllerSub);
             
-
         }
 
         [Test]
