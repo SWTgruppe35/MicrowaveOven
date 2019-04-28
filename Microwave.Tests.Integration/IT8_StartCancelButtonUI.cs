@@ -38,8 +38,7 @@ namespace Microwave.Tests.Integration
             _startCancelButton = new Button();
             _cookControllerSub = Substitute.For<ICookController>();
             _sut = new UserInterface(_powerButton, _timeButton, _startCancelButton, _doorSub, _display, _light, _cookControllerSub);
-  
-
+            
         }
 
         [Test]
@@ -50,9 +49,7 @@ namespace Microwave.Tests.Integration
             _outputSub.Received().OutputLine($"Display shows: {50} W");
             _outputSub.Received().OutputLine($"Display cleared");
         }
-
-
-
+        
         [Test]
         public void StartCancel_btn_pressed_In_SetTimeState()
         {
@@ -63,9 +60,7 @@ namespace Microwave.Tests.Integration
             _outputSub.Received().OutputLine($"Light is turned on");
             _cookControllerSub.Received().StartCooking(50,60);
         } 
-
         
-
         [Test]
         public void StartCancel_Btn_PressedIn_SetCookingState()
         {
@@ -77,6 +72,8 @@ namespace Microwave.Tests.Integration
             _outputSub.Received().OutputLine($"Light is turned off");
             _cookControllerSub.Received().Stop();
         }
+
+
 
 
     }

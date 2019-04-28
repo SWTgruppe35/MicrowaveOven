@@ -42,13 +42,19 @@ namespace Microwave.Tests.Integration
 
             _sut = new UserInterface(_powerButton, _timeButton, _startCancelButton, _door, _display, _light,
                 _cookController);
+
+
         }
 
         [Test]
-        public void PowerButtonPressed()
+        public void StartCookingAssertPowertube()
         {
             _powerButton.Press();
-            _outputSub.Received().OutputLine($"Display shows: {50} W");
+            _timeButton.Press();
+            _startCancelButton.Press();
+            System.Threading.Thread.Sleep(5000);
+
+            _outputSub.Received().OutputLine($"PowerTube works with 50 W");
         }
     }
 }
