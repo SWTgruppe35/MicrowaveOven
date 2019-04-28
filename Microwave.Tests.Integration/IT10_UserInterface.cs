@@ -67,6 +67,17 @@ namespace Microwave.Tests.Integration
             _outputSub.Received(5).OutputLine(Arg.Is<string>(str => str.Contains($"Display shows: 00:")));
         }
 
+        [Test]
+        public void StartCookingAndTimerExpired()
+        {
+            _powerButton.Press();
+            _timeButton.Press();
+            _startCancelButton.Press();
+            System.Threading.Thread.Sleep(60010);
+
+            _outputSub.Received().OutputLine($"Light is turned on");
+            _outputSub.Received().OutputLine($"Display cleared");
+        }
 
     }
 }
