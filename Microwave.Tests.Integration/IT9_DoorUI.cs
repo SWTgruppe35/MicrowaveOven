@@ -38,5 +38,14 @@ namespace Microwave.Tests.Integration
             _controllerSub = Substitute.For<ICookController>();
             _sut = new UserInterface(_powerbtn, _timerbtn, _start_cancelbtn, _door, _display, _light, _controllerSub);
         }
+
+        [Test]
+        public void ReadyDoorOpensLightTurnsOn()
+        {
+            _door.Open();
+
+            _outputSub.Received().OutputLine($"Light is turned on");
+
+        }
     }
 }
