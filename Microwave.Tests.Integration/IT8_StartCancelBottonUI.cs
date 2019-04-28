@@ -38,13 +38,13 @@ namespace Microwave.Tests.Integration
             _startCancelButtonSub = new Button();
             _cookControllerSub = Substitute.For<ICookController>();
             _sut = new UserInterface(_powerButton, _timeButtonSub, _startCancelButtonSub, _doorSub, _display, _light, _cookControllerSub);
-            _startCancelButtonSub.Press();
-
+            
         }
 
         [Test]
-        public void StartCancelBottonSetPower()
+        public void StartCancelBottonSetPowerState()
         {
+            _powerButton.Press();
             _startCancelButtonSub.Press();
             _outputSub.Received().OutputLine($"Display shows: {50} W");
         }
@@ -55,7 +55,14 @@ namespace Microwave.Tests.Integration
         public void StartCancel_btn_SetTimeState()
         {
 
-        } 
+        }
+
+        [Test]
+        public void StartCancelBottonSetCooking()
+        {
+
+        }
+
 
     }
 }
