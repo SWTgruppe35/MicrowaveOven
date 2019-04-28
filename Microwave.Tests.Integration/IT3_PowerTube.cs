@@ -23,12 +23,12 @@ namespace Microwave.Tests.Integration
             _sut = new PowerTube(_outputSub);
         }
 
-        [TestCase(1)]
-        [TestCase(100)]
+        [TestCase(50)]
+        [TestCase(500)]
         public void TurnOnPowerTubeIsCalledWithParameters(int power)
         {
             _sut.TurnOn(power);
-            _outputSub.Received(1).OutputLine($"PowerTube works with {power} %");
+            _outputSub.Received(1).OutputLine($"PowerTube works with {power} W");
         }
 
         [Test]
