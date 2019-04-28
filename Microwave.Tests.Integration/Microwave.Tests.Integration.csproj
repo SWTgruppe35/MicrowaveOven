@@ -63,6 +63,8 @@
     <Compile Include="IT3_PowerTube.cs" />
     <Compile Include="IT5_CookControllerTimer.cs" />
     <Compile Include="IT7_TimeButtonUI.cs" />
+    <Compile Include="IT6_PowerButtonUI.cs" />
+    <Compile Include="IT8_UserInterfaceDoor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
