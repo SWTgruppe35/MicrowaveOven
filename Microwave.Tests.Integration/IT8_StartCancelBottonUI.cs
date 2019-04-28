@@ -47,7 +47,8 @@ namespace Microwave.Tests.Integration
         {
             _powerButton.Press();
             _startCancelButton.Press();
-            _outputSub.Received().OutputLine($"Display shows: {50} W");
+            _outputSub.Received().OutputLine($"Display cleared");
+            _outputSub.Received().OutputLine($"Light is turned on");
         }
         
         [Test]
@@ -68,7 +69,8 @@ namespace Microwave.Tests.Integration
             _timeButton.Press();
             _startCancelButton.Press();
             _startCancelButton.Press();
-            _outputSub.Received().OutputLine($"Display shows: {50} W");
+            _outputSub.Received().OutputLine($"Display cleared");
+            _outputSub.Received().OutputLine($"Light is turned off");
             _cookControllerSub.Received().Stop();
         }
 
