@@ -20,8 +20,8 @@ namespace Microwave.Tests.Integration
         private IOutput _outputSub;
         private IDoor _doorSub;
         private IButton _powerButton;
-        private IButton _timeButtonSub;
-        private IButton _startCancelButtonSub;
+        private IButton _timeButton;
+        private IButton _startCancelButton;
         private IDisplay _display;
         private ILight _light;
         private ICookController _cookControllerSub;
@@ -34,26 +34,31 @@ namespace Microwave.Tests.Integration
             _display = new Display(_outputSub);
             _doorSub = Substitute.For<IDoor>();
             _powerButton = new Button();
-            _timeButtonSub = Substitute.For<IButton>();
-            _startCancelButtonSub = new Button();
+            _timeButton = new Button();
+            _startCancelButton = new Button();
             _cookControllerSub = Substitute.For<ICookController>();
-            _sut = new UserInterface(_powerButton, _timeButtonSub, _startCancelButtonSub, _doorSub, _display, _light, _cookControllerSub);
-            _startCancelButtonSub.Press();
+            _sut = new UserInterface(_powerButton, _timeButton, _startCancelButton, _doorSub, _display, _light, _cookControllerSub);
+            _startCancelButton.Press();
 
         }
 
         [Test]
         public void StartCancelBottonSetPower()
         {
-            _startCancelButtonSub
+            //_startCancelButtonSub
         }
 
 
 
         [Test]
-        public void StartCancel_btn_SetTimeState()
+        public void StartCancel_btn_pressed_In_SetTimeState()
         {
-
+            _powerButton.Press();
+            _timeButton.Press();
+            _startCancelButton.Press();
+            _outputSub.Received().OutputLine($"Display cleared");
+            _outputSub.Received().OutputLine($"Light is turned on");
+            _cookControllerSub.Received().StartCooking(50,60);
         } 
 
     }
