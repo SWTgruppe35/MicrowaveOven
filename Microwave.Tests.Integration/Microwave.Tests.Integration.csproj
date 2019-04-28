@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IT10_UserInterface.cs" />
     <Compile Include="IT1_Display.cs" />
     <Compile Include="IT4_CookController.cs" />
     <Compile Include="IT2_Light.cs" />
@@ -65,6 +66,7 @@
     <Compile Include="IT7_TimeButtonUI.cs" />
     <Compile Include="IT6_PowerButtonUI.cs" />
     <Compile Include="IT8_StartCancelBottonUI.cs" />
+    <Compile Include="IT9_DoorUI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
