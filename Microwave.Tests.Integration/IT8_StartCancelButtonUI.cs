@@ -14,7 +14,7 @@ using NUnit.Framework.Internal;
 namespace Microwave.Tests.Integration
 {
     [TestFixture]
-    class IT8_UserInterfaceDoor
+    class IT8_StartCanelButtonUI
     {
         private IUserInterface _sut;
         private IOutput _outputSub;
@@ -38,17 +38,17 @@ namespace Microwave.Tests.Integration
             _startCancelButton = new Button();
             _cookControllerSub = Substitute.For<ICookController>();
             _sut = new UserInterface(_powerButton, _timeButton, _startCancelButton, _doorSub, _display, _light, _cookControllerSub);
-            _startCancelButton.Press();
+  
 
         }
 
         [Test]
-        public void StartCancelButtonSetPowerState()
+        public void StartCancel_Btn_pressed_In_SetPowerState()
         {
             _powerButton.Press();
             _startCancelButton.Press();
+            _outputSub.Received().OutputLine($"Display shows: {50} W");
             _outputSub.Received().OutputLine($"Display cleared");
-            _outputSub.Received().OutputLine($"Light is turned on");
         }
 
 
@@ -67,7 +67,7 @@ namespace Microwave.Tests.Integration
         
 
         [Test]
-        public void StartCancelButtonSetCooking()
+        public void StartCancel_Btn_PressedIn_SetCookingState()
         {
             _powerButton.Press();
             _timeButton.Press();
