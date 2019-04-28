@@ -79,5 +79,15 @@ namespace Microwave.Tests.Integration
 
             _outputSub.Received(2).OutputLine($"Display shows: {50} W");
         }
+
+        [Test]
+        public void PowerButtonPressedAndStartCancelButtonPressed()
+        {
+            _powerButton.Press();
+
+            _startCancelButtonSub.Pressed += Raise.Event();
+
+            _outputSub.Received().OutputLine($"Display cleared");
+        }
     }
 }
