@@ -8,5 +8,6 @@ namespace Microwave.Tests.Integration
 {
     class IT8_UserInterfaceDoor
     {
+
     }
 }
