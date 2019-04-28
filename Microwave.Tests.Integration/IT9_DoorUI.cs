@@ -47,5 +47,14 @@ namespace Microwave.Tests.Integration
             _outputSub.Received().OutputLine($"Light is turned on");
 
         }
+
+        [Test]
+        public void DoorOpenClosedLightIsOff()
+        {
+            _door.Open();
+            _door.Close();
+
+            _outputSub.Received().OutputLine($"Light is turned off");
+        }
     }
 }
