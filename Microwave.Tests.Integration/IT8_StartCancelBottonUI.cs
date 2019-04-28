@@ -46,7 +46,7 @@ namespace Microwave.Tests.Integration
         public void StartCancelButtonSetPowerState()
         {
             _powerButton.Press();
-            _startCancelButtonSub.Press();
+            _startCancelButton.Press();
             _outputSub.Received().OutputLine($"Display shows: {50} W");
         }
 
@@ -69,10 +69,11 @@ namespace Microwave.Tests.Integration
         public void StartCancelButtonSetCooking()
         {
             _powerButton.Press();
-            _timeButtonSub.Press();
-            _startCancelButtonSub.Press();
-            _startCancelButtonSub.Press();
+            _timeButton.Press();
+            _startCancelButton.Press();
+            _startCancelButton.Press();
             _outputSub.Received().OutputLine($"Display shows: {50} W");
+            _cookControllerSub.Received().Stop();
         }
 
 
